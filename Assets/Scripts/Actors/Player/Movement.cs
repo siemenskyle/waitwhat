@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour {
 		float y = Input.GetAxis ("Vertical");
 
 
-		if ((x != 0 || y != 0) && this.transform.parent == null && this.GetComponent<BoxCollider2D>().isTrigger == false) {
+		if ((x != 0 || y != 0) && this.transform.parent == null && this.GetComponent<Collider2D>().isTrigger == false) {
 			transform.Translate(Vector3.right * movespeed * Time.fixedDeltaTime * x + Vector3.up * movespeed * Time.fixedDeltaTime * y);
 
 		}
