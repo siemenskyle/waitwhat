@@ -40,15 +40,15 @@ public class KeyBindings : MonoBehaviour {
 		}
 	}
 
-	string getXAxis ()
+	public string getXAxis ()
 	{
 		return xAxis;
 	}
-	string getYAxis()
+	public string getYAxis()
 	{
-		return xAxis;
+		return yAxis;
 	}
-	string getSwapEntity()
+	public string getSwapEntity()
 	{
 		return swapEntity;
 	}
