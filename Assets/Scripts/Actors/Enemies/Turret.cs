@@ -13,7 +13,8 @@ public class Turret : Enemy {
 	private FireDelagate fireDelegate;
 
 	// Use this for initialization
-	void Start () {
+	protected new void Start () {
+        base.Start();
 		if (fireType == fireTypeEnum.FIRE_WHEN_VISIBLE)
 			fireDelegate = FireWhenVisible;
 		else if (fireType == fireTypeEnum.FIRE_AT_INTERVAL)

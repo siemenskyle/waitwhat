@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour, Actor {
 	// Use this for initialization
 	protected void Start () {
 		this.alive = true;
-		//TODO: Find players
 	}
 
     // Update is called once per frame
