@@ -3,12 +3,19 @@ using System.Collections;
 
 public class ParTransferGood : MonoBehaviour {
 
+	private KeyBindings keys;
+
 	public GameObject partner;
 	public int player;
 	public bool start;
 	public GameObject check;
 	public bool amClear;
 	public bool partnerClear;
+
+	void Awake ()
+	{
+		keys = GetComponent<KeyBindings> ();
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +37,7 @@ public class ParTransferGood : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		bool switchPersons = Input.GetKeyDown (KeyCode.Space);
+		bool switchPersons = Input.GetButtonDown (keys.getSwapEntity());
 		partnerClear = partner.GetComponent<ParTransferGood> ().amClear;
 
 		if (switchPersons ) {
