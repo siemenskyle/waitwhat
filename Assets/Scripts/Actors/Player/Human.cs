@@ -9,7 +9,7 @@ public class Human : MonoBehaviour, Actor {
 
 	// Use this for initialization
 	void Start () {
-	
+        this.alive = true;
 	}
 	
 	// Update is called once per frame
