@@ -1,30 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Actor : MonoBehaviour {
-
-    // Properties/Fields
-    private bool alive;
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
+public interface Actor {
+    
     // Getter for 'alive' field
-    public bool isAlive()
-    {
-        return this.alive;
-    }
+    bool isAlive();
 
     // Setter for the 'alive' field
-    public void die()
-    {
-        this.alive = false;
-    }
+    void die();
+
 }
