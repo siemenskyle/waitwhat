@@ -20,12 +20,12 @@ public class Enemy : MonoBehaviour, Actor {
 	}
 
 	// Getter for 'alive' field
-	bool isAlive(){
+	public bool isAlive(){
 		return this.alive;
 	}
 
 	// Setter for the 'alive' field
-	void die(){
+	public void die(){
 		alive = false;
 		//Destroy(this.gameObject);
 	}
