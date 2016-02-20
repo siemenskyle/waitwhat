@@ -9,13 +9,13 @@ public class Enemy : MonoBehaviour, Actor {
 	GameObject player2;
 
 	// Use this for initialization
-	void Start () {
+	protected void Start () {
 		this.alive = true;
 		//TODO: Find players
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 	
 	}
 

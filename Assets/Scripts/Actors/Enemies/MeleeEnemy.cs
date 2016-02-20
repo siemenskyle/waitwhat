@@ -3,36 +3,61 @@ using System.Collections;
 
 public class MeleeEnemy : Enemy {
 
+    // Fields
+    private bool targetExists;
     private int nextUpdate;
+    private Vector3 currentTarget;
+    // Constants
+    private const int TICKS_TO_UPDATE = 5;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    protected new void Start ()
     {
-        nextUpdate = 0;
+        // Call the base (Enemy) class's Start method.
+        base.Start();
+        nextUpdate = TICKS_TO_UPDATE;
+        targetExists = false;
     }
 	
 	// Fixed update is called on a regular schedule
-	void FixedUpdate () {
-	    
+	protected void FixedUpdate () {
+        meleeUpdateRoutine();
+	}
+
+    protected void meleeUpdateRoutine()
+    {
         // Check if the player is in line of sight every so often
         if (nextUpdate <= 0)
         {
-            checkLineOfSight();
-            nextUpdate = 5;
+            // If a target has been found, set flag boolean to true
+            // otherwise set the flag to false.
+            if (humanIsInLineOfSight())
+            {
+                targetExists = true;
+            }
+            else
+            {
+                targetExists = false;
+            }
+            // Number of updates until the next update.
+            nextUpdate = TICKS_TO_UPDATE;
         }
         else
         {
             nextUpdate -= 1;
         }
-	}
+    }
 
-    // Checks to see if there are any humans in sight, if there is it returns the nearest one.
-    private GameObject checkLineOfSight()
+    // Checks to see if there are any humans in sight, if there is it returns success.
+    // Postcondition: If there is a human in LOS, then the human's position is stored in
+    //   'currentTarget', as well, 'targetExists' must be set to true. If there is no
+    //   human found, then 'targetExists' must be set to false.
+    private bool humanIsInLineOfSight()
     {
         // Get the list of humans
         GameObject[] humanList = GameObject.FindGameObjectsWithTag("Player");
         float nearestDistance = -1.0f;
-        GameObject targetHuman = null;
+        bool success = false;
         // Check to see which ones, if any, are in this enemy's line of sight
         foreach(GameObject h in humanList)
         {
@@ -42,13 +67,14 @@ public class MeleeEnemy : Enemy {
                 if (nearestDistance == -1.0f || distanceToHuman(h) < nearestDistance)
                 {
                     nearestDistance = distanceToHuman(h);
-                    targetHuman = h;
+                    currentTarget = h.GetComponent<Transform>().position;
+                    success = true;
                 }
             }
         }
 
         // Return the nearest in-sight human, if there is one. Otherwise return null.
-        return targetHuman;
+        return success;
     }
 
     private bool canSeeHuman(GameObject target)

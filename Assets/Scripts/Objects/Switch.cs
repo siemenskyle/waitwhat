@@ -4,14 +4,25 @@ using System.Collections;
 public class Switch : MonoBehaviour {
 
     // Fields
-    private bool active = false;
+    public enum switchType { BLUE, RED, GREEN, YELLOW }
+    public switchType type;
+    public SwitchManager manager;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        // Check to see if the triggering object is an Actor
-        if (other.gameObject.GetComponent<Human>() != null)
+        // Check to see if the triggering object is a human
+        if (other.gameObject.tag == "Player")
         {
-            toggle();
+            toggleOn();
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        // Check to see if the triggering object is a human
+        if (other.gameObject.tag == "Player")
+        {
+            toggleOff();
         }
     }
 
@@ -25,16 +36,48 @@ public class Switch : MonoBehaviour {
 	
 	}
 
-    // Toggles the switch's state
-    public void toggle()
+    // Toggles the switch's state to on
+    public void toggleOn()
     {
-        this.active = !(this.active);
+        switch (type)
+        {
+            case switchType.BLUE:
+                manager.blue += 1;
+                break;
+            case switchType.GREEN:
+                manager.green += 1;
+                break;
+            case switchType.RED:
+                manager.red += 1;
+                break;
+            case switchType.YELLOW:
+                manager.yellow += 1;
+                break;
+            default:
+                break;
+        }
     }
 
-    // Getters/Setters
-    public bool isOn()
+    // Toggle the switch's state to off
+    public void toggleOff()
     {
-        return this.active;
+        switch (type)
+        {
+            case switchType.BLUE:
+                manager.blue -= 1;
+                break;
+            case switchType.GREEN:
+                manager.green -= 1;
+                break;
+            case switchType.RED:
+                manager.red -= 1;
+                break;
+            case switchType.YELLOW:
+                manager.yellow -= 1;
+                break;
+            default:
+                break;
+        }
     }
 
 }
