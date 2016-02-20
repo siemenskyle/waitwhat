@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Switch : MonoBehaviour, Object {
+public class Switch : MonoBehaviour {
 
     // Fields
     private bool active = false;
@@ -11,8 +11,7 @@ public class Switch : MonoBehaviour, Object {
         // Check to see if the triggering object is an Actor
         if (other.gameObject.GetComponent<Human>() != null)
         {
-            // If it is an Actor, then interact with it
-            interact(other.gameObject.GetComponent<Human>());
+            toggle();
         }
     }
 
@@ -25,13 +24,6 @@ public class Switch : MonoBehaviour, Object {
 	void Update () {
 	
 	}
-
-    // Interact based on Actor-Pit interaction
-    public void interact(Actor interactor)
-    {
-        // Perform switch action
-        this.toggle();
-    }
 
     // Toggles the switch's state
     public void toggle()
