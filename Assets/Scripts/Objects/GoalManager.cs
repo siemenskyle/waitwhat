@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class GoalManager : MonoBehaviour {
-	
+	public bool startGame;
+	public int level;
 	public bool p1InGoal;
 	public bool p2InGoal;
 	public SpriteRenderer levelcompletedialogue;
@@ -11,6 +12,7 @@ public class GoalManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		level = 0;
 		p1InGoal = false;
 		levelcompletedialogue.color = Color.clear;
 	}
@@ -19,7 +21,14 @@ public class GoalManager : MonoBehaviour {
 	void Update () {
 		if (p1InGoal && p2InGoal) {
 			levelcompletedialogue.color = Color.white;
-			advanceToNextLevel ();
+			Invoke("advanceToNextLevel ()", 4);
+		}
+		startGame = Input.GetButtonDown ("SwapEntityP1");
+		if (startGame)
+			print ("noodles");
+		if (level == 0 && startGame) {
+			print ("Gets here");
+			advanceToNextLevel();
 		}
 	}
 
@@ -27,7 +36,9 @@ public class GoalManager : MonoBehaviour {
 	// Advance to the next level
 	void advanceToNextLevel()
 	{
+		level++;
 		// Since the goal has been interacted with, we then move to the next level.
+		SceneManager.LoadScene(level);
 		//SceneManager.LoadScene(nextLevel);
 	}
 }
