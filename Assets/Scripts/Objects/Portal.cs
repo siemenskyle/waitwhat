@@ -50,23 +50,19 @@ public class Portal : MonoBehaviour {
 		{
 			// If the triggering object is still the human
 
-			Debug.Log ("exit x, y");
-			Debug.Log (exitPortal.transform.position.x);
-			Debug.Log (exitPortal.transform.position.y);
 
-			Debug.Log ("partner x, y");
-			Debug.Log (teleportTarget.GetComponent<ParTransferGood> ().partner.transform.position.x);
-			Debug.Log (teleportTarget.GetComponent<ParTransferGood> ().partner.transform.position.y);
-
-			Debug.Log ("active x, y");
-			Debug.Log (teleportTarget.transform.position.x);
-			Debug.Log (teleportTarget.transform.position.y);
-
-
-			teleportTarget.GetComponent<ParTransferGood> ().xdistPart = teleportTarget.GetComponent<ParTransferGood> ().xdistPart - (this.transform.position.x - exitPortal.transform.position.x);
-			teleportTarget.GetComponent<ParTransferGood> ().ydistPart = teleportTarget.GetComponent<ParTransferGood> ().ydistPart - (this.transform.position.y - exitPortal.transform.position.y);
-			teleportTarget.GetComponent<ParTransferGood> ().partner.GetComponent<ParTransferGood> ().xdistPart = teleportTarget.GetComponent<ParTransferGood> ().xdistPart;
-			teleportTarget.GetComponent<ParTransferGood> ().partner.GetComponent<ParTransferGood> ().ydistPart = teleportTarget.GetComponent<ParTransferGood> ().ydistPart;
+			if (!teleportTarget.GetComponent<ParTransferGood> ().start) {
+				teleportTarget.GetComponent<ParTransferGood> ().xdistPart = teleportTarget.GetComponent<ParTransferGood> ().xdistPart - (this.transform.position.x - exitPortal.transform.position.x);
+				teleportTarget.GetComponent<ParTransferGood> ().ydistPart = teleportTarget.GetComponent<ParTransferGood> ().ydistPart - (this.transform.position.y - exitPortal.transform.position.y);
+				teleportTarget.GetComponent<ParTransferGood> ().partner.GetComponent<ParTransferGood> ().xdistPart = teleportTarget.GetComponent<ParTransferGood> ().xdistPart;
+				teleportTarget.GetComponent<ParTransferGood> ().partner.GetComponent<ParTransferGood> ().ydistPart = teleportTarget.GetComponent<ParTransferGood> ().ydistPart;
+			} else {
+				teleportTarget.GetComponent<ParTransferGood> ().xdistPart = teleportTarget.GetComponent<ParTransferGood> ().xdistPart + (this.transform.position.x - exitPortal.transform.position.x);
+				teleportTarget.GetComponent<ParTransferGood> ().ydistPart = teleportTarget.GetComponent<ParTransferGood> ().ydistPart + (this.transform.position.y - exitPortal.transform.position.y);
+				teleportTarget.GetComponent<ParTransferGood> ().partner.GetComponent<ParTransferGood> ().xdistPart = teleportTarget.GetComponent<ParTransferGood> ().xdistPart;
+				teleportTarget.GetComponent<ParTransferGood> ().partner.GetComponent<ParTransferGood> ().ydistPart = teleportTarget.GetComponent<ParTransferGood> ().ydistPart;
+			}
+				
 
 			teleportTarget.GetComponent<Transform> ().position = exitPortal.transform.position;
 				
