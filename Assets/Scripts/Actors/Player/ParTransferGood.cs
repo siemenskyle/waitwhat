@@ -46,9 +46,9 @@ public class ParTransferGood : MonoBehaviour {
 
 
 		if (amClear && this.GetComponent<Collider2D> ().enabled == false && !switchPersons) {
-			this.GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 0.7f);
-		} else if (!amClear && this.GetComponent<Collider2D> ().enabled == false && !switchPersons) {
 			this.GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 0.5f);
+		} else if (!amClear && this.GetComponent<Collider2D> ().enabled == false && !switchPersons) {
+			this.GetComponent<SpriteRenderer> ().color = Color.black;
 		} else {
 			this.GetComponent<SpriteRenderer> ().color = new Color(1f,1f,1f,1f);
 		}
