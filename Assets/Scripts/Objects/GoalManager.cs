@@ -24,10 +24,7 @@ public class GoalManager : MonoBehaviour {
 			Invoke("advanceToNextLevel ()", 4);
 		}
 		startGame = Input.GetButtonDown ("SwapEntityP1");
-		if (startGame)
-			print ("noodles");
 		if (level == 0 && startGame) {
-			print ("Gets here");
 			advanceToNextLevel();
 		}
 	}
@@ -36,9 +33,9 @@ public class GoalManager : MonoBehaviour {
 	// Advance to the next level
 	void advanceToNextLevel()
 	{
-		level++;
+		level = level + 1;
 		// Since the goal has been interacted with, we then move to the next level.
-		SceneManager.LoadScene(level);
+		SceneManager.LoadScene(level, LoadSceneMode.Single);
 		//SceneManager.LoadScene(nextLevel);
 	}
 }
