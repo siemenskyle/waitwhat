@@ -43,16 +43,16 @@ public class ParTransferGood : MonoBehaviour {
 		float x = Input.GetAxis (keys.getXAxis());
 		float y = Input.GetAxis (keys.getYAxis());
 
-		if (x != 0 || y != 0) {
+		if (!((x > -0.5 && x < 0.5) ||( y  >-0.5 && y < 0.5 ))) {
 			amClear = false;
 			partnerClear = false;
 			partner.GetComponent<ParTransferGood> ().amClear = false;
 			partner.GetComponent<ParTransferGood> ().partnerClear = false;
 		}
 
-		if (amClear && this.GetComponent<Collider2D> ().enabled == false && !switchPersons) {
+		if (amClear && this.GetComponent<Collider2D> ().enabled == false) {
 			this.GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 0.5f);
-		} else if (!amClear && this.GetComponent<Collider2D> ().enabled == false && !switchPersons) {
+		} else if (!amClear && this.GetComponent<Collider2D> ().enabled == false ) {
 			this.GetComponent<SpriteRenderer> ().color = Color.black;
 		} else {
 			this.GetComponent<SpriteRenderer> ().color = new Color(1f,1f,1f,1f);
