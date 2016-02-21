@@ -40,7 +40,18 @@ public class ParTransferGood : MonoBehaviour {
 		bool switchPersons = Input.GetButtonDown (keys.getSwapEntity());
 		partnerClear = partner.GetComponent<ParTransferGood> ().amClear;
 
-		if (switchPersons ) {
+		float x = Input.GetAxis (keys.getXAxis());
+		float y = Input.GetAxis (keys.getYAxis());
+
+
+
+		if (amClear && this.GetComponent<Collider2D> ().enabled == false && !switchPersons) {
+			this.GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 0.7f);
+		} else {
+			this.GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 0.5f);
+		}
+
+		if (switchPersons && x == 0 && y == 0 ) {
 			if (this.GetComponent<Collider2D> ().enabled == true && partnerClear) {
 				this.transform.parent = partner.transform;
 				this.GetComponent<Collider2D> ().enabled= false;
