@@ -17,6 +17,7 @@ public class HumanClearGood : MonoBehaviour {
 	}
 
 	void Update(){
+		this.transform.position = checks.transform.position;
 
 	}
 }

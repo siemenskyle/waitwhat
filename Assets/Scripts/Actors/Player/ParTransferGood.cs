@@ -12,6 +12,9 @@ public class ParTransferGood : MonoBehaviour {
 	public bool amClear;
 	public bool partnerClear;
 
+
+	public float xdistPart;
+	public float ydistPart;
 	void Awake ()
 	{
 		keys = GetComponent<KeyBindings> ();
@@ -26,8 +29,13 @@ public class ParTransferGood : MonoBehaviour {
 			check.transform.parent = this.transform;
 			partnerClear = partner.GetComponent<ParTransferGood> ().check.transform.parent = this.transform;
 
+			xdistPart = partner.GetComponent<Transform> ().localPosition.x;
+			ydistPart= partner.GetComponent<Transform> ().localPosition.y;
+
 		} else {
 			this.GetComponent<Collider2D> ().enabled = false;
+			xdistPart = this.transform.localPosition.x;
+			ydistPart = this.transform.localPosition.y;
 		}
 		amClear = true;
 
@@ -43,6 +51,16 @@ public class ParTransferGood : MonoBehaviour {
 		float x = Input.GetAxis (keys.getXAxis());
 		float y = Input.GetAxis (keys.getYAxis());
 
+		//assure that the space between the two characters is as it should be 
+		if (start && this.transform.parent == null) {
+			partner.GetComponent<Transform> ().localPosition = (new Vector3 (xdistPart, ydistPart, 0f));
+		} else if (!start && this.transform.parent == null) {
+			partner.GetComponent<Transform> ().localPosition = -(new Vector3 (xdistPart, ydistPart, 0f));
+		}
+
+
+
+		//While moving make all the clears false, no switching
 		if (!((x > -0.5 && x < 0.5) ||( y  >-0.5 && y < 0.5 ))) {
 			amClear = false;
 			partnerClear = false;
@@ -50,6 +68,8 @@ public class ParTransferGood : MonoBehaviour {
 			partner.GetComponent<ParTransferGood> ().partnerClear = false;
 		}
 
+
+		// if they are clear be transparent, otherwise be black
 		if (amClear && this.GetComponent<Collider2D> ().enabled == false) {
 			this.GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 0.5f);
 		} else if (!amClear && this.GetComponent<Collider2D> ().enabled == false ) {
@@ -58,11 +78,13 @@ public class ParTransferGood : MonoBehaviour {
 			this.GetComponent<SpriteRenderer> ().color = new Color(1f,1f,1f,1f);
 		}
 
+
 		if (switchPersons && x == 0 && y == 0 ) {
 			if (this.GetComponent<Collider2D> ().enabled == true && partnerClear) {
 				this.transform.parent = partner.transform;
 				this.GetComponent<Collider2D> ().enabled= false;
 				this.GetComponent<SpriteRenderer> ().color = new Color(1f,1f,1f,0.5f);
+				this.amClear = true;
 			} else if (this.GetComponent<Collider2D> ().enabled == false && amClear) {
 			
 				this.GetComponent<Collider2D> ().enabled = true;
