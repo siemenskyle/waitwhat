@@ -29,7 +29,7 @@ public class Human : MonoBehaviour, Actor {
     public void die()
     {
         GameObject manager = GameObject.FindGameObjectWithTag("GoalManager");
-        //manager.GetComponent<GoalManager>().Invoke("");
+        manager.GetComponent<GoalManager>().Invoke("resetLevel", 2f);
         Destroy(gameObject);
     }
 
