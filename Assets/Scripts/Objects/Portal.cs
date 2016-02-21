@@ -31,14 +31,19 @@ public class Portal : MonoBehaviour {
             // If the triggering object is still the human
             if (other.gameObject == teleportTarget)
             {
-				if (other.gameObject.name == "Main" || other.gameObject.name == "Main 2") {
-					other.gameObject.GetComponent<Transform>().position = exitPortal.GetComponent<Transform>().position;
-				} else if (other.gameObject.name == "Second")
 				
-				}
 
-			foreach( Transform child in other.transform)
-			{
+				Transform tempChildInvis = other.GetComponent<ParTransferGood>().partner.transform;
+
+
+				float tempx = tempChildInvis.position.x;
+				float tempy = tempChildInvis.position.y;
+
+				other.gameObject.GetComponent<Transform>().position = exitPortal.GetComponent<Transform>().position;
+
+				tempChildInvis.position = new Vector2(tempx, tempy);
+				GameObject childCheck = tempChildInvis.GetComponent<ParTransferGood> ().check;
+				childCheck.transform.position = new Vector2(tempx,tempy);
 				
                 // Teleport the human
 				
