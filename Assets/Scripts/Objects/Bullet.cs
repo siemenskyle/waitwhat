@@ -11,8 +11,8 @@ public class Bullet : MonoBehaviour {
 
     // Constants
     private const float START_SPEED = 0.02f;
-    private const float MAX_SPEED = 3.0f;
-    private const float ACCELERATION = 0.01f;
+    private const float MAX_SPEED = 6.0f;
+    private const float ACCELERATION = 1f;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour {
 	void Start () {
         // The period for which this bullet will accelerate.
         currentSpeed = START_SPEED;
-        currentVelocity = new Vector2(gameObject.GetComponent<Transform>().forward.x, gameObject.GetComponent<Transform>().forward.y)
+        currentVelocity = new Vector2(gameObject.GetComponent<Transform>().up.x, gameObject.GetComponent<Transform>().up.y)
             * currentSpeed;
         this.gameObject.GetComponent<Rigidbody2D>().velocity = currentVelocity;
     }
@@ -43,6 +43,7 @@ public class Bullet : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         accelerate();
+        //transform.Translate(Vector3.up * Time.deltaTime);
     }
 
     //Accelerates this object by the acceleration
@@ -56,9 +57,9 @@ public class Bullet : MonoBehaviour {
         {
             currentSpeed = currentSpeed + ACCELERATION;
         }
-        //currentVelocity = new Vector2(gameObject.GetComponent<Transform>().forward.x, gameObject.GetComponent<Transform>().forward.y)
-        //    * currentSpeed;
-        //this.gameObject.GetComponent<Rigidbody2D>().velocity = currentVelocity;
+        currentVelocity = new Vector2(gameObject.GetComponent<Transform>().up.x, gameObject.GetComponent<Transform>().up.y)
+            * currentSpeed;
+        this.gameObject.GetComponent<Rigidbody2D>().velocity = currentVelocity;
     }
 
     // Reverse the velocity of the bullet

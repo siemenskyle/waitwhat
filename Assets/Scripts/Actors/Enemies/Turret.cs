@@ -62,11 +62,12 @@ public class Turret : Enemy {
         // If a human is in sight and there is no cooldown active
 		if(humanIsInLineOfSight() && Time.time > cooldown)
         {
-            
-            GameObject bulletInstance = Instantiate(bullet, this.transform.position, new Quaternion(0f, 0f, 0f, 0f)) as GameObject;
+            Vector3 inFront = transform.rotation * (Vector3.up * 0.65f);
+            GameObject bulletInstance = Instantiate(bullet, inFront + this.transform.position, this.transform.rotation) as GameObject;
             bulletInstance.GetComponent<Bullet>().setParentTurret(this.gameObject);
             /* Set the angle of the bullet. */
-            bulletInstance.GetComponent<Rigidbody2D>().velocity = gameObject.GetComponent<Transform>().forward * 3.0f;
+            //bulletInstance.GetComponent<Rigidbody2D>().velocity = bulletInstance.GetComponent<Transform>().forward * 3.0f;
+            //Debug.Log(bulletInstance.GetComponent<Transform>().forward.ToString());
             /* We have used the attack, so set that we are on cooldown. */
             cooldown = Time.time + CD_DURATION;
         }
