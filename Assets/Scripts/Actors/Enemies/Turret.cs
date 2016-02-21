@@ -19,6 +19,9 @@ public class Turret : Enemy {
 	private delegate void FireDelagate(); 
 	private FireDelagate fireDelegate;
 
+    // Constants
+    private const float TURN_SPEED = 2f;
+
 	// Use this for initialization
 	protected new void Start () {
         base.Start();
@@ -46,31 +49,24 @@ public class Turret : Enemy {
 
 	// Fire the turrent when visible
 	void FireWhenVisible () {
+        // If a human is in sight
+        if(humanIsInLineOfSight())
+        {
+            Vector3 target = getTargetCoordinates();
+            Vector3 vectorToTarget = target - transform.position;
+            // -90 degrees due to direction of sprite (it's facing 'upwards')
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90.0f;
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * TURN_SPEED);
+        }
         // If a human is in sight and there is no cooldown active
 		if(humanIsInLineOfSight() && Time.time > cooldown)
         {
-            /* We are in range, set the animator to reflect this. */
-            //enemy.GetComponent<Animator>().SetBool("inRange", true);
-            /* Get the target position to shoot bullet at. */
-            Vector3 target = getTargetCoordinates() - gameObject.GetComponent<Transform>().position;
-            /* Calculate the angle between the cloud and the player. */
-            float deltaY, deltaX, angleToPlayer;
-            //First get difference between start and end point.
-            deltaX = this.gameObject.GetComponent<Transform>().position.x - target.x;
-            deltaY = this.gameObject.GetComponent<Transform>().position.y - target.y;
-            //Now calculate the angle.
-            angleToPlayer = Mathf.Atan2(deltaY, deltaX) * 180.0f / Mathf.PI + 90.0f; //+90 is offset for pointing
-            /* Create a new bullet to launch at the player. */
+            
             GameObject bulletInstance = Instantiate(bullet, this.transform.position, new Quaternion(0f, 0f, 0f, 0f)) as GameObject;
             bulletInstance.GetComponent<Bullet>().setParentTurret(this.gameObject);
             /* Set the angle of the bullet. */
-            bulletInstance.transform.localEulerAngles = new Vector3(0f, 0f, angleToPlayer);
-            //bulletInstance.transform.rotation = Quaternion.LookRotation(target);
-            //Debug.Log("x: " + target.x.ToString() + " Local x: " );
-            //Debug.Log("y: " + target.y.ToString());
-            target = target.normalized;
-            /* Launch the bullet towards the player. (Velocity is set here) */
-            bulletInstance.GetComponent<Rigidbody2D>().velocity = target * 3.0f;
+            bulletInstance.GetComponent<Rigidbody2D>().velocity = gameObject.GetComponent<Transform>().forward * 3.0f;
             /* We have used the attack, so set that we are on cooldown. */
             cooldown = Time.time + CD_DURATION;
         }

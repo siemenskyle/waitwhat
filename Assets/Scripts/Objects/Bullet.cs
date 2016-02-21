@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour {
         currentSpeed = START_SPEED;
         currentVelocity = new Vector2(gameObject.GetComponent<Transform>().forward.x, gameObject.GetComponent<Transform>().forward.y)
             * currentSpeed;
-        //this.gameObject.GetComponent<Rigidbody2D>().velocity = currentVelocity;
+        this.gameObject.GetComponent<Rigidbody2D>().velocity = currentVelocity;
     }
 	
 	// Update is called once per frame
