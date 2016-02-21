@@ -17,5 +17,10 @@ public class ShieldEnemy : MeleeEnemy
         ticksToUpdate = TICKS_TO_UPDATE;
         setReflective(true);
     }
-    
+
+    protected new void FixedUpdate()
+    {
+        base.FixedUpdate();
+    }
+
 }

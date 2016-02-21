@@ -13,6 +13,10 @@ public class MeleeEnemy : Enemy {
     protected float moveSpeed;
     protected float windUpTime;
     protected int ticksToUpdate;
+    private Vector2 currentVelocity;
+
+    // Public
+    public float speed = 80.0f;
 
     // Use this for initialization
     protected new void Start ()
@@ -48,6 +52,10 @@ public class MeleeEnemy : Enemy {
             else
             {
                 targetExists = false;
+                charging = false;
+                gameObject.GetComponent<Animator>().SetBool("isCharging", false);
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+
             }
             // Number of updates until the next update.
             nextUpdate = ticksToUpdate;
@@ -87,6 +95,8 @@ public class MeleeEnemy : Enemy {
                 // Then we are no longer charging, but we will begin checking for a target again the
                 // next run-through of the update routine.
                 this.charging = false;
+                this.targetExists = false;
+                gameObject.GetComponent<Animator>().SetBool("isCharging", false);
             }
         }
     }
@@ -97,16 +107,26 @@ public class MeleeEnemy : Enemy {
         charging = true;
         windingUp = true;
         windUpEndTime = Time.time + windUpTime;
+        gameObject.GetComponent<Animator>().SetBool("isCharging", true);
     }
 
     // Charge towards the target coordinates
     private void charge()
     {
         // Get the next position and move towards it.
-        Vector3 nextPosition = Vector3.MoveTowards(this.gameObject.GetComponent<Transform>().position,
-            getTargetCoordinates(), moveSpeed);
-
-        this.gameObject.GetComponent<Transform>().position.Set(nextPosition.x, nextPosition.y, nextPosition.z);
+        Vector3 target = getTargetCoordinates();
+        Vector3 vectorToTarget = target - transform.position;
+        vectorToTarget = vectorToTarget.normalized;
+        //transform.position = Vector2.MoveTowards(this.gameObject.GetComponent<Transform>().position,
+        //    getTargetCoordinates(), (Time.fixedDeltaTime * speed));
+        currentVelocity = new Vector2(vectorToTarget.x, vectorToTarget.y)
+            * speed;
+        gameObject.GetComponent<Rigidbody2D>().velocity = currentVelocity;
+        gameObject.GetComponent<Rigidbody2D>().AddForce(currentVelocity);
+        //this.gameObject.GetComponent<Transform>().Translate(nextPosition);
+        //currentVelocity = new Vector2(gameObject.GetComponent<Transform>().up.x, gameObject.GetComponent<Transform>().up.y)
+        //    * SPEED;
+        //this.gameObject.GetComponent<Rigidbody2D>().velocity = currentVelocity;
     }
 
     // Getter for charging
