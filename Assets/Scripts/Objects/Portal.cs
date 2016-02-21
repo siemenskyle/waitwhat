@@ -21,6 +21,7 @@ public class Portal : MonoBehaviour {
             // and keep track of which human was triggering it
             timeToTeleport = Time.time + TELEPORT_CHARGE_TIME;
 			teleportTarget = other.gameObject;
+            gameObject.GetComponent<AudioSource>().Play();
         }
     }
 
@@ -35,6 +36,8 @@ public class Portal : MonoBehaviour {
         if (other.gameObject == teleportTarget)
         {
             teleportTarget = null;
+            if (!used)
+                gameObject.GetComponent<AudioSource>().Stop();
         }
     }
 
@@ -70,8 +73,8 @@ public class Portal : MonoBehaviour {
 				// Teleport the human
 
 				teleportTarget = null;
-				Destroy (teleportTarget);
-				Destroy (this.gameObject);
+				Destroy (exitPortal);
+				Destroy (this.gameObject, gameObject.GetComponent<AudioSource>().clip.length/2);
 
 		}
 	
