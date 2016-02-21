@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour {
 
     // Fields
     private float currentSpeed;
+    private float deathTime;
     private Vector2 currentVelocity;
     private Vector3 target;
     private GameObject parentTurret;
@@ -44,12 +45,16 @@ public class Bullet : MonoBehaviour {
         currentVelocity = new Vector2(gameObject.GetComponent<Transform>().up.x, gameObject.GetComponent<Transform>().up.y)
             * currentSpeed;
         this.gameObject.GetComponent<Rigidbody2D>().velocity = currentVelocity;
+        deathTime = Time.time + 3.0f;
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
         accelerate();
-        //transform.Translate(Vector3.up * Time.deltaTime);
+        if (Time.time > deathTime)
+        {
+            Destroy(gameObject);
+        }
     }
 
     //Accelerates this object by the acceleration
