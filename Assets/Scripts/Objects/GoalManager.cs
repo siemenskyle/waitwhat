@@ -29,6 +29,11 @@ public class GoalManager : MonoBehaviour {
 		}
 	}
 
+	public void resetLevel()
+	{
+		SceneManager.LoadScene(level, LoadSceneMode.Single);
+	}
+
 
 	// Advance to the next level
 	void advanceToNextLevel()
