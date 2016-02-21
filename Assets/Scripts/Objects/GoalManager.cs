@@ -20,11 +20,12 @@ public class GoalManager : MonoBehaviour {
 	void Update () {
 		if (p1InGoal && p2InGoal) {
 			levelcompletedialogue.color = Color.white;
-			Invoke("advanceToNextLevel ()", 4);
+			//advanceToNextLevel ();
+			Invoke("advanceToNextLevel", 2);
 		}
 		startGame = Input.GetButtonDown ("SwapEntityP1");
 		if (level == 0 && startGame) {
-			advanceToNextLevel();
+			advanceToNextLevel ();
 		}
 	}
 
