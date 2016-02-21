@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour, Actor {
                 // If this human is the closest so far, then that's the target we'll attack!
                 if (nearestDistance == -1.0f || distanceToHuman(h) < nearestDistance)
                 {
-                    nearestDistance = distanceToHuman(h);
+                    nearestDistance = distanceToHuman(h.GetComponent<Transform>().gameObject);
                     currentTarget = h.GetComponent<Transform>().position;
                     success = true;
                 }

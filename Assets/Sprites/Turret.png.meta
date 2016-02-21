@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b0d7266fd2db9324581e1f0d9a983330
-timeCreated: 1456021763
+timeCreated: 1456029716
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -61,21 +61,21 @@ TextureImporter:
         y: 0
         width: 200
         height: 200
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 179, y: -33}
-        - {x: 80, y: -33}
-        - {x: 24, y: -36}
-        - {x: 0, y: -74}
-        - {x: 0, y: -153}
-        - {x: 25, y: -195}
-        - {x: 53, y: -199}
-        - {x: 145, y: -199}
-        - {x: 184, y: -184}
-        - {x: 199, y: -143}
-        - {x: 199, y: -71}
+      - - {x: 79, y: 67}
+        - {x: -20, y: 67}
+        - {x: -76, y: 64}
+        - {x: -100, y: 26}
+        - {x: -100, y: -53}
+        - {x: -75, y: -95}
+        - {x: -47, y: -99}
+        - {x: 45, y: -99}
+        - {x: 84, y: -84}
+        - {x: 99, y: -43}
+        - {x: 99, y: 29}
     - name: Turret_1
       rect:
         serializedVersion: 2

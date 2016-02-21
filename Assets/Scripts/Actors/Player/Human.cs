@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public enum playerNumber {PLAYER_1, PLAYER_2};
 
@@ -28,6 +29,8 @@ public class Human : MonoBehaviour, Actor {
     public void die()
     {
         //TODO: Implement this
+        //Unload the players
+        //wait for a second, 
     }
 
 	public playerNumber getPlayerNumber()

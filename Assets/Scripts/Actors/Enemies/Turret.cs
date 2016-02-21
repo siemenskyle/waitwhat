@@ -56,17 +56,21 @@ public class Turret : Enemy {
             /* Calculate the angle between the cloud and the player. */
             float deltaY, deltaX, angleToPlayer;
             //First get difference between start and end point.
-            deltaX = target.x - this.gameObject.transform.position.x;
-            deltaY = target.y - this.gameObject.transform.position.y;
+            deltaX = this.gameObject.GetComponent<Transform>().position.x - target.x;
+            deltaY = this.gameObject.GetComponent<Transform>().position.y - target.y;
             //Now calculate the angle.
             angleToPlayer = Mathf.Atan2(deltaY, deltaX) * 180.0f / Mathf.PI + 90.0f; //+90 is offset for pointing
             /* Create a new bullet to launch at the player. */
             GameObject bulletInstance = Instantiate(bullet, this.transform.position, new Quaternion(0f, 0f, 0f, 0f)) as GameObject;
+            bulletInstance.GetComponent<Bullet>().setParentTurret(this.gameObject);
             /* Set the angle of the bullet. */
             bulletInstance.transform.localEulerAngles = new Vector3(0f, 0f, angleToPlayer);
-            //target = target.normalized;
+            //bulletInstance.transform.rotation = Quaternion.LookRotation(target);
+            //Debug.Log("x: " + target.x.ToString() + " Local x: " );
+            //Debug.Log("y: " + target.y.ToString());
+            target = target.normalized;
             /* Launch the bullet towards the player. (Velocity is set here) */
-            //bolt.GetComponent<Rigidbody2D>().velocity = target * 20.0f;
+            bulletInstance.GetComponent<Rigidbody2D>().velocity = target * 3.0f;
             /* We have used the attack, so set that we are on cooldown. */
             cooldown = Time.time + CD_DURATION;
         }

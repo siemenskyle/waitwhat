@@ -8,7 +8,7 @@ public class SpearEnemy : MeleeEnemy {
     private const float WIND_UP_TIME = 0.75f;
     private const int TICKS_TO_UPDATE = 5;
 
-    public void OnCollisionEnter2D(Collider2D other)
+    public void OnCollisionEnter2D(Collision2D other)
     {
         // If this spear enemy hits a player, then kill the player.
         if (other.gameObject.tag == "Player")
