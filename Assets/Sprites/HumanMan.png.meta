@@ -1,9 +1,19 @@
 fileFormatVersion: 2
 guid: 3514c8de3ceb26145a5ffb12a164381b
-timeCreated: 1456008208
+timeCreated: 1456011250
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: HumanMan_0
+    21300002: HumanMan_1
+    21300004: HumanMan_2
+    21300006: HumanMan_3
+    21300008: HumanMan_4
+    21300010: HumanMan_5
+    21300012: HumanMan_6
+    21300014: HumanMan_7
+    21300016: HumanMan_8
+    21300018: HumanMan_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,18 +48,208 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: HumanMan_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -59, y: 68}
+        - {x: -71, y: 34}
+        - {x: -71, y: -32}
+        - {x: -53, y: -62}
+        - {x: 5, y: -72}
+        - {x: 47, y: -72}
+        - {x: 68, y: -28}
+        - {x: 68, y: 48}
+        - {x: 45, y: 68}
+    - name: HumanMan_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 77}
+        - {x: -71, y: 67}
+        - {x: -71, y: -72}
+        - {x: 68, y: -72}
+        - {x: 68, y: 77}
+    - name: HumanMan_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -53, y: 69}
+        - {x: -72, y: 48}
+        - {x: -72, y: -39}
+        - {x: -66, y: -72}
+        - {x: 1, y: -72}
+        - {x: 60, y: -54}
+        - {x: 68, y: -33}
+        - {x: 68, y: 64}
+        - {x: 37, y: 69}
+    - name: HumanMan_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 46, y: 77}
+        - {x: -26, y: 77}
+        - {x: -48, y: 69}
+        - {x: -48, y: -18}
+        - {x: -46, y: -26}
+        - {x: -20, y: -73}
+        - {x: 38, y: -73}
+        - {x: 50, y: -36}
+        - {x: 50, y: 72}
+        - {x: 47, y: 76}
+    - name: HumanMan_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -48, y: 65}
+        - {x: -48, y: -27}
+        - {x: -36, y: -75}
+        - {x: 50, y: -75}
+        - {x: 52, y: -67}
+        - {x: 52, y: 65}
+    - name: HumanMan_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -36, y: 77}
+        - {x: -50, y: 73}
+        - {x: -50, y: -28}
+        - {x: -46, y: -64}
+        - {x: -28, y: -73}
+        - {x: 42, y: -73}
+        - {x: 48, y: -52}
+        - {x: 48, y: 77}
+    - name: HumanMan_6
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -52, y: 65}
+        - {x: -52, y: -63}
+        - {x: -48, y: -75}
+        - {x: 11, y: -75}
+        - {x: 32, y: -66}
+        - {x: 48, y: -48}
+        - {x: 48, y: 63}
+        - {x: 38, y: 65}
+    - name: HumanMan_7
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -48, y: 67}
+        - {x: -71, y: 47}
+        - {x: -71, y: -46}
+        - {x: -59, y: -69}
+        - {x: -46, y: -74}
+        - {x: 17, y: -74}
+        - {x: 68, y: -61}
+        - {x: 68, y: 67}
+    - name: HumanMan_8
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -58, y: 77}
+        - {x: -71, y: 45}
+        - {x: -71, y: -42}
+        - {x: -63, y: -68}
+        - {x: 54, y: -68}
+        - {x: 68, y: -8}
+        - {x: 68, y: 61}
+        - {x: 64, y: 77}
+    - name: HumanMan_9
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 66, y: 67}
+        - {x: -42, y: 67}
+        - {x: -71, y: 48}
+        - {x: -71, y: -51}
+        - {x: -66, y: -60}
+        - {x: 0, y: -74}
+        - {x: 61, y: -74}
+        - {x: 68, y: -36}
+        - {x: 68, y: 66}
     outline: []
   spritePackingTag: 
   userData: 
