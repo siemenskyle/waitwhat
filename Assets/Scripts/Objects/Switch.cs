@@ -8,11 +8,14 @@ public class Switch : MonoBehaviour {
     public switchType type;
     public SwitchManager manager;
 
+	private Collider2D otherColl;
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         // Check to see if the triggering object is a human
         if (other.gameObject.tag == "Player")
         {
+			otherColl = other;
             toggleOn();
         }
     }
@@ -23,17 +26,24 @@ public class Switch : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             toggleOff();
+			otherColl = null;
         }
     }
 
     // Use this for initialization
     void Start () {
-
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		// Used if you switch while you are on the panel
+		if (otherColl != null) {
+			if (!otherColl.enabled) {
+				otherColl = null;
+				toggleOff ();
+			}
+		}
 	}
 
     // Toggles the switch's state to on

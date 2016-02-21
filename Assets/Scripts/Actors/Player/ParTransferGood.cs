@@ -44,6 +44,7 @@ public class ParTransferGood : MonoBehaviour {
 			if (this.GetComponent<Collider2D> ().enabled == true && partnerClear) {
 				this.transform.parent = partner.transform;
 				this.GetComponent<Collider2D> ().enabled= false;
+				this.GetComponent<SpriteRenderer> ().color = new Color(1f,1f,1f,0.5f);
 			} else if (this.GetComponent<Collider2D> ().enabled == false && amClear) {
 			
 				this.GetComponent<Collider2D> ().enabled = true;
@@ -51,6 +52,7 @@ public class ParTransferGood : MonoBehaviour {
 				check.transform.parent = this.transform;
 				partnerClear = partner.GetComponent<ParTransferGood> ().check.transform.parent = this.transform;
 				partner.transform.parent = this.transform;
+				this.GetComponent<SpriteRenderer> ().color = new Color(1f,1f,1f,1f);
 			}
 		}
 
