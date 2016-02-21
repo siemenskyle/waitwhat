@@ -25,31 +25,7 @@ public class Portal : MonoBehaviour {
 
     public void OnTriggerStay2D(Collider2D other)
     {
-        // If the timer has expired
-        if (Time.time >= timeToTeleport)
-        {
-            // If the triggering object is still the human
-            if (other.gameObject == teleportTarget)
-            {
-				
-
-				Transform tempChildInvis = other.GetComponent<ParTransferGood>().partner.transform;
-
-
-				float tempx = tempChildInvis.position.x;
-				float tempy = tempChildInvis.position.y;
-
-				other.gameObject.GetComponent<Transform>().position = exitPortal.GetComponent<Transform>().position;
-
-				tempChildInvis.position = new Vector2(tempx, tempy);
-				GameObject childCheck = tempChildInvis.GetComponent<ParTransferGood> ().check;
-				childCheck.transform.position = new Vector2(tempx,tempy);
-				
-                // Teleport the human
-				
-                teleportTarget = null;
-            }
-        }
+        
     }
 
     public void OnTriggerExit2D(Collider2D other)
@@ -68,6 +44,30 @@ public class Portal : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// If the timer has expired
+		if (Time.time >= timeToTeleport && teleportTarget != null)
+		{
+			// If the triggering object is still the human
+
+
+
+			Transform tempChildInvis = teleportTarget.GetComponent<ParTransferGood>().partner.transform;
+
+
+				float tempx = tempChildInvis.position.x;
+				float tempy = tempChildInvis.position.y;
+
+				teleportTarget.gameObject.GetComponent<Transform>().position = exitPortal.GetComponent<Transform>().position;
+
+				tempChildInvis.position = new Vector2(tempx, tempy);
+				GameObject childCheck = tempChildInvis.GetComponent<ParTransferGood> ().check;
+				childCheck.transform.position = new Vector2(tempx,tempy);
+
+				// Teleport the human
+
+				teleportTarget = null;
+
+		}
 	
 	}
     
