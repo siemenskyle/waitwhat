@@ -15,7 +15,7 @@ public class HumanClearGood : MonoBehaviour {
 		//	checks.GetComponent<ParTransferGood> ().amClear = true;
 		//else
 			checks.GetComponent<ParTransferGood> ().amClear = false;
-			frameCount = 0;
+
 	}
 
 	void OnTriggerExit2D(Collider2D other){
@@ -25,11 +25,6 @@ public class HumanClearGood : MonoBehaviour {
 	void Update(){
 		this.transform.position = checks.transform.position;
 
-		if (frameCount >= 10) {
-			checks.GetComponent<ParTransferGood> ().amClear = true;
-		}else{
-			frameCount = frameCount + 1;
-		}
 
 	}
 }
