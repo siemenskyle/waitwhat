@@ -12,7 +12,6 @@ public class Turret : Enemy {
 
     // Firing properties
     private float cooldown;
-    private const float CD_DURATION = 1.5f;
 
 	// Rate of fire, used for FIRE_AT_INTERVAL
 	public float firerate;
@@ -43,7 +42,14 @@ public class Turret : Enemy {
 	void FireAtInterval () {
 		if(Time.time > cooldown)
         {
-            //TODO: Implement this
+            Vector3 inFront = transform.rotation * (Vector3.up * 0.65f);
+            GameObject bulletInstance = Instantiate(bullet, inFront + this.transform.position, this.transform.rotation) as GameObject;
+            bulletInstance.GetComponent<Bullet>().setParentTurret(this.gameObject);
+            /* Set the angle of the bullet. */
+            //bulletInstance.GetComponent<Rigidbody2D>().velocity = bulletInstance.GetComponent<Transform>().forward * 3.0f;
+            //Debug.Log(bulletInstance.GetComponent<Transform>().forward.ToString());
+            /* We have used the attack, so set that we are on cooldown. */
+            cooldown = Time.time + firerate;
         }
 	}
 
@@ -69,7 +75,7 @@ public class Turret : Enemy {
             //bulletInstance.GetComponent<Rigidbody2D>().velocity = bulletInstance.GetComponent<Transform>().forward * 3.0f;
             //Debug.Log(bulletInstance.GetComponent<Transform>().forward.ToString());
             /* We have used the attack, so set that we are on cooldown. */
-            cooldown = Time.time + CD_DURATION;
+            cooldown = Time.time + firerate;
         }
 	}
 }
