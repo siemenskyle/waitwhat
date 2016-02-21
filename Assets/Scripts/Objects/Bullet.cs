@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour {
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
-        else if (other.gameObject != parentTurret)
+		else if (other.gameObject != parentTurret && !other.isTrigger)
         {
             Destroy(gameObject);
         }
