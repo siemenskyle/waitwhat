@@ -23,4 +23,10 @@ public class ShieldEnemy : MeleeEnemy
         base.FixedUpdate();
     }
 
+    public new void die()
+    {
+
+        Destroy(gameObject);
+    }
+
 }

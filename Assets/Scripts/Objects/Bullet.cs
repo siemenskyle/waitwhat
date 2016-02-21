@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour {
 
     // Fields
     private float currentSpeed;
-    private float deathTime;
+    public float deathTime;
     private Vector2 currentVelocity;
     private Vector3 target;
     private GameObject parentTurret;
@@ -30,12 +30,21 @@ public class Bullet : MonoBehaviour {
         else if (other.gameObject.GetComponent<Turret>() != null && other.gameObject != parentTurret)
         {
             Destroy(other.gameObject);
-            Destroy(gameObject);
+            playPewOnDeath();
         }
 		else if (other.gameObject != parentTurret && !other.isTrigger)
         {
-            Destroy(gameObject);
+            playPewOnDeath();
         }
+    }
+
+    private void playPewOnDeath()
+    {
+        gameObject.GetComponent<AudioSource>().Play();
+        gameObject.GetComponent<Collider2D>().enabled = false;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<TrailRenderer>().enabled = false;
+        Destroy(gameObject, gameObject.GetComponent<AudioSource>().clip.length);
     }
 
 	// Use this for initialization
@@ -45,7 +54,7 @@ public class Bullet : MonoBehaviour {
         currentVelocity = new Vector2(gameObject.GetComponent<Transform>().up.x, gameObject.GetComponent<Transform>().up.y)
             * currentSpeed;
         this.gameObject.GetComponent<Rigidbody2D>().velocity = currentVelocity;
-        deathTime = Time.time + 3.0f;
+        deathTime = Time.time + 10.0f;
     }
 	
 	// Update is called once per frame

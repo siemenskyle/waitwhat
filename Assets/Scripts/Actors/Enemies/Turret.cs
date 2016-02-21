@@ -17,6 +17,7 @@ public class Turret : Enemy {
 	public float firerate;
 	private delegate void FireDelagate(); 
 	private FireDelagate fireDelegate;
+    public float bulletLifeTime;
 
     // Constants
     private const float TURN_SPEED = 2f;
@@ -45,6 +46,8 @@ public class Turret : Enemy {
             Vector3 inFront = transform.rotation * (Vector3.up * 0.65f);
             GameObject bulletInstance = Instantiate(bullet, inFront + this.transform.position, this.transform.rotation) as GameObject;
             bulletInstance.GetComponent<Bullet>().setParentTurret(this.gameObject);
+            gameObject.GetComponent<AudioSource>().Play();
+            bulletInstance.GetComponent<Bullet>().deathTime = Time.time + bulletLifeTime;
             /* Set the angle of the bullet. */
             //bulletInstance.GetComponent<Rigidbody2D>().velocity = bulletInstance.GetComponent<Transform>().forward * 3.0f;
             //Debug.Log(bulletInstance.GetComponent<Transform>().forward.ToString());
@@ -71,6 +74,8 @@ public class Turret : Enemy {
             Vector3 inFront = transform.rotation * (Vector3.up * 0.65f);
             GameObject bulletInstance = Instantiate(bullet, inFront + this.transform.position, this.transform.rotation) as GameObject;
             bulletInstance.GetComponent<Bullet>().setParentTurret(this.gameObject);
+            gameObject.GetComponent<AudioSource>().Play();
+            bulletInstance.GetComponent<Bullet>().deathTime = Time.time + bulletLifeTime;
             /* Set the angle of the bullet. */
             //bulletInstance.GetComponent<Rigidbody2D>().velocity = bulletInstance.GetComponent<Transform>().forward * 3.0f;
             //Debug.Log(bulletInstance.GetComponent<Transform>().forward.ToString());

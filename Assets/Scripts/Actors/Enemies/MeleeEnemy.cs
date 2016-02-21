@@ -55,6 +55,7 @@ public class MeleeEnemy : Enemy {
                 charging = false;
                 gameObject.GetComponent<Animator>().SetBool("isCharging", false);
                 gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+                gameObject.GetComponent<AudioSource>().Stop();
 
             }
             // Number of updates until the next update.
@@ -108,6 +109,7 @@ public class MeleeEnemy : Enemy {
         windingUp = true;
         windUpEndTime = Time.time + windUpTime;
         gameObject.GetComponent<Animator>().SetBool("isCharging", true);
+        gameObject.GetComponent<AudioSource>().Play();
     }
 
     // Charge towards the target coordinates
