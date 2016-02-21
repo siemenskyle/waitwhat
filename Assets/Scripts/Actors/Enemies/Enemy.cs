@@ -23,6 +23,11 @@ public class Enemy : MonoBehaviour, Actor {
 	
 	}
 
+    public void setReflective(bool value)
+    {
+        reflective = value;
+    }
+
 
 
     // Checks to see if there are any humans in sight, if there is it returns success.

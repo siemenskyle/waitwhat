@@ -17,13 +17,19 @@ public class Bullet : MonoBehaviour {
     public void OnTriggerEnter2D(Collider2D other)
     {
         // If this bullet has just hit a shield, then reverse its velocity (bounces off)
-        if (other.gameObject.GetComponent<Enemy>() != null && other.gameObject.GetComponent<Enemy>().reflectsProjectiles())
+        if (other.gameObject.GetComponent<ShieldEnemy>() != null && other.gameObject.GetComponent<ShieldEnemy>().reflectsProjectiles())
         {
             reverseVelocity();
+            parentTurret = null;
         }
         else if (other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponentInParent<Human>().die();
+        }
+        else if (other.gameObject.GetComponent<Turret>() != null && other.gameObject != parentTurret)
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
         else if (other.gameObject != parentTurret)
         {

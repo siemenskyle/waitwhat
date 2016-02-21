@@ -15,6 +15,7 @@ public class ShieldEnemy : MeleeEnemy
         moveSpeed = MOVE_SPEED;
         windUpTime = WIND_UP_TIME;
         ticksToUpdate = TICKS_TO_UPDATE;
+        setReflective(true);
     }
     
 }
