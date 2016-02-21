@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
 		float x = Input.GetAxis (keys.getXAxis());
 
