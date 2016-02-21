@@ -5,6 +5,9 @@ public class Goal : MonoBehaviour {
 
     // Fields
 	public GoalManager manager;
+	public SpriteRenderer halfheart;
+
+	private Human playeringoal;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -12,7 +15,9 @@ public class Goal : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             // If it is a Player, then interact with it
-			manager.inGoal += 1;
+			halfheart.color = Color.white;
+			playeringoal = other.attachedRigidbody.gameObject.GetComponent<Human> ();
+			setingoal (true);
         }
     }
 
@@ -22,13 +27,23 @@ public class Goal : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             // Decrement the number of players in the goal region.
-            manager.inGoal -= 1;
+			playeringoal = other.attachedRigidbody.gameObject.GetComponent<Human> ();
+			setingoal(false);
+			halfheart.color = Color.clear;
         }
+		playeringoal = null;
     }
+
+	private void setingoal(bool g){
+		if (playeringoal.getPlayerNumber () == playerNumber.PLAYER_1)
+			manager.p1InGoal = g;
+		else if (playeringoal.getPlayerNumber () == playerNumber.PLAYER_2)
+			manager.p2InGoal = g;
+	}
 
     // Use this for initialization
     void Start () {
-		
+		halfheart.color = Color.clear;
 	}
 	
 	// Update is called once per frame
