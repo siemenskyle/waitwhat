@@ -28,9 +28,9 @@ public class Human : MonoBehaviour, Actor {
 
     public void die()
     {
-        //TODO: Implement this
-        //Unload the players
-        //wait for a second, 
+        GameObject manager = GameObject.FindGameObjectWithTag("GoalManager");
+        //manager.GetComponent<GoalManager>().Invoke("");
+        Destroy(gameObject);
     }
 
 	public playerNumber getPlayerNumber()

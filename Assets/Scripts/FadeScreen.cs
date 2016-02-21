@@ -33,7 +33,7 @@ public class FadeScreen : MonoBehaviour {
     }
 
 
-    void FadeToBlack()
+    public void FadeToBlack()
     {
         // Lerp the colour of the texture between itself and black.
         GetComponent<GUITexture>().color = Color.Lerp(GetComponent<GUITexture>().color, Color.black, fadeSpeed * Time.deltaTime);
@@ -64,11 +64,11 @@ public class FadeScreen : MonoBehaviour {
         GetComponent<GUITexture>().enabled = true;
 
         // Start fading towards black.
-        FadeToBlack();
+        //FadeToBlack();
 
         // If the screen is almost black...
         if (GetComponent<GUITexture>().color.a >= 0.95f)
             // ... reload the level.
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 }
