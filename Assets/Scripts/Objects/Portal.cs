@@ -16,7 +16,6 @@ public class Portal : MonoBehaviour {
         // If the triggering object is a human
         if (other.gameObject.tag == "Player")
         {
-			Debug.Log ("Hey");
             // Begin the teleport countdown
             // and keep track of which human was triggering it
             timeToTeleport = Time.time + TELEPORT_CHARGE_TIME;
@@ -32,10 +31,17 @@ public class Portal : MonoBehaviour {
             // If the triggering object is still the human
             if (other.gameObject == teleportTarget)
             {
-				Debug.Log ("Got here");
+				if (other.gameObject.name == "Main" || other.gameObject.name == "Main 2") {
+					other.gameObject.GetComponent<Transform>().position = exitPortal.GetComponent<Transform>().position;
+				} else if (other.gameObject.name == "Second")
+				
+				}
+
+			foreach( Transform child in other.transform)
+			{
+				
                 // Teleport the human
-				other.gameObject.GetComponent<Transform>().localPosition.Set(exitPortal.transform.position.x, exitPortal.transform.position.y, exitPortal.transform.position.z);
-                //other.gameObject.transform.localPosition.Set(exitPortal.transform.position.x, exitPortal.transform.position.y, exitPortal.transform.position.z);
+				
                 teleportTarget = null;
             }
         }
