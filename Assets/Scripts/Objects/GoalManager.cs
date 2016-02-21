@@ -8,7 +8,7 @@ public class GoalManager : MonoBehaviour {
 	public bool p1InGoal;
 	public bool p2InGoal;
 	public SpriteRenderer levelcompletedialogue;
-    public GameObject endTheme;
+    public AudioSource endTheme;
 
 
 	// Use this for initialization
@@ -22,8 +22,7 @@ public class GoalManager : MonoBehaviour {
 		if (p1InGoal && p2InGoal) {
 			levelcompletedialogue.color = Color.white;
             //advanceToNextLevel ();
-            if(endTheme != null)
-                endTheme.GetComponent<AudioSource>().Play();
+            endTheme.PlayOneShot(endTheme.clip, 0.15f);
 			Invoke("advanceToNextLevel", 2.2f);
 		}
 		startGame = Input.GetButtonDown ("SwapEntityP1");
