@@ -12,7 +12,6 @@ public class GoalManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		level = 0;
 		p1InGoal = false;
 		levelcompletedialogue.color = Color.clear;
 	}
@@ -33,7 +32,7 @@ public class GoalManager : MonoBehaviour {
 	// Advance to the next level
 	void advanceToNextLevel()
 	{
-		level = level + 1;
+		level++;
 		// Since the goal has been interacted with, we then move to the next level.
 		SceneManager.LoadScene(level, LoadSceneMode.Single);
 		//SceneManager.LoadScene(nextLevel);
